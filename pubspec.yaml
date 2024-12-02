@@ -1,0 +1,108 @@
+name: auto_sopa
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.15
+  carousel_slider: ^5.0.0
+  provider: ^6.1.2
+  image_picker: ^1.1.2
+  lottie: ^3.1.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^4.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+     - assets/images/logo.svg
+     - assets/images/info_icon.svg
+     - assets/images/add_icon.svg
+     - assets/images/image_car_2.png
+     - assets/images/image_car_3.png
+     - assets/images/image_car_4.png
+     - assets/images/image_car_5.png
+     - assets/images/image_car_6.png
+     - assets/images/image_car_7.png
+     - assets/images/location_color_icon.svg
+     - assets/images/image_icon.svg
+     - assets/images/home_icon.svg
+     - assets/images/edit_icon.svg
+     - assets/images/settings_icon.svg
+     - assets/images/save_icon.svg
+     - assets/images/test_icon.svg
+     - assets/images/edit_container.svg
+     - assets/images/delete_container.svg
+     - assets/images/delete_icon.svg
+     - assets/images/profil_icon.svg
+     - assets/images/arrow_forward.svg
+     - assets/images/logout_icon.svg
+     - assets/images/show_more_icon.svg
+     - assets/images/convertible_icon.png
+     - assets/images/suvs_icon.png
+     - assets/images/sedans_icon.png
+     - assets/images/hatchbacks_icon.png
+     - assets/images/favorite_icon.svg
+     - assets/images/arrow_back.svg
+     - assets/images/search_icon.svg
+     - assets/images/search_filter_icon.svg
+     - assets/images/porsche_interior.png
+     - assets/images/camera_icon.svg
+     - assets/images/filter_icon.svg
+     - assets/images/calendar_icon.svg
+     - assets/images/road_icon.svg
+     - assets/images/fuel_type_icon.svg
+     - assets/images/transmission_icon.svg
+     - assets/images/heart_add.svg
+     - assets/images/heart_added.svg
+     - assets/lottie/Animation_1.json
+     - assets/lottie/Animation_2.json
+     - assets/lottie/Animation_3.json
+     - assets/lottie/Animation_4.json
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+     - family: Kanit
+       fonts:
+         - asset: assets/fonts/Kanit-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
