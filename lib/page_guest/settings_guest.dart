@@ -1,6 +1,9 @@
+import 'package:auto_sopa/auth/login.dart';
 import 'package:auto_sopa/auth/started.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class SettingsGuest extends StatefulWidget {
   const SettingsGuest({super.key});
 
@@ -28,18 +31,18 @@ class _SettingsGuestState extends State<SettingsGuest> {
                     children: [
                       SvgPicture.asset('assets/images/profil_icon.svg'),
                       SizedBox(height: 10,),
-                      // Text('John Smith',style: TextStyle(fontSize: 30,fontFamily: 'Kanit',fontWeight: FontWeight.bold),),
-                      // SizedBox(height: 5,),
-                      // Text('johnsmith@gmail.com',style: TextStyle(fontSize: 17,fontFamily: 'Kanit',color: Color(0xFF828282)),),
-                      Container(
-                        width: 100,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFF2F89C0),
-                        ),
-                        child: Center(
-                          child: Text('Login',style: TextStyle(color: Colors.white,fontSize: 18,fontFamily: 'Kanit'),),
+                      GestureDetector(
+                        onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => Login())),
+                        child: Container(
+                          width: 100,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFF2F89C0),
+                          ),
+                          child: Center(
+                            child: Text(AppLocalizations.of(context)!.login,style: TextStyle(color: Colors.white,fontSize: 18,fontFamily: 'Kanit'),),
+                          ),
                         ),
                       )
                     ],
@@ -56,7 +59,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Notifications',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                      Text(AppLocalizations.of(context)!.notifications,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                       SvgPicture.asset('assets/images/arrow_forward.svg')
                     ],
                   ),
@@ -70,7 +73,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
-                        Text('SERVICES',style: TextStyle(fontSize: 16,fontFamily: 'Kanit',fontWeight: FontWeight.bold),),
+                        Text(AppLocalizations.of(context)!.services,style: TextStyle(fontSize: 16,fontFamily: 'Kanit',fontWeight: FontWeight.bold),),
                       ],
                     ),
                   ),
@@ -83,7 +86,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Feedback',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                          Text(AppLocalizations.of(context)!.feedback,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                           SvgPicture.asset('assets/images/arrow_forward.svg')
                         ],
                       ),
@@ -98,7 +101,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Recommendation',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                          Text(AppLocalizations.of(context)!.recommendation,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                           SvgPicture.asset('assets/images/arrow_forward.svg')
                         ],
                       ),
@@ -114,7 +117,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
-                        Text('LEGAL',style: TextStyle(fontSize: 16,fontFamily: 'Kanit',fontWeight: FontWeight.bold),),
+                        Text(AppLocalizations.of(context)!.legal,style: TextStyle(fontSize: 16,fontFamily: 'Kanit',fontWeight: FontWeight.bold),),
                       ],
                     ),
                   ),
@@ -127,7 +130,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Imprint',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                          Text(AppLocalizations.of(context)!.imprint,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                           SvgPicture.asset('assets/images/arrow_forward.svg')
                         ],
                       ),
@@ -142,7 +145,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('General terms and conditions',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                          Text(AppLocalizations.of(context)!.termsAndCondition,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                           SvgPicture.asset('assets/images/arrow_forward.svg')
                         ],
                       ),
@@ -157,7 +160,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Privacy policy',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                          Text(AppLocalizations.of(context)!.privacyPolicy,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                           SvgPicture.asset('assets/images/arrow_forward.svg')
                         ],
                       ),
@@ -172,7 +175,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Declaration of Consent',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                          Text(AppLocalizations.of(context)!.declarationOfConsent,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                           SvgPicture.asset('assets/images/arrow_forward.svg')
                         ],
                       ),
@@ -187,7 +190,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Privacy Manager',style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
+                          Text(AppLocalizations.of(context)!.privacyManage,style: TextStyle(fontFamily: 'Kanit',fontSize: 16),),
                           SvgPicture.asset('assets/images/arrow_forward.svg')
                         ],
                       ),
@@ -209,7 +212,7 @@ class _SettingsGuestState extends State<SettingsGuest> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Log out',style: TextStyle(fontFamily: 'Kanit',color: Colors.white,fontSize: 20),),
+                      Text(AppLocalizations.of(context)!.logout,style: TextStyle(fontFamily: 'Kanit',color: Colors.white,fontSize: 20),),
                       SizedBox(width: 10,),
                       SvgPicture.asset('assets/images/logout_icon.svg',width: 25,),
                     ],

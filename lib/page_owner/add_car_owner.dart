@@ -533,7 +533,7 @@ class _AddCarOwnerState extends State<AddCarOwner> {
           // Arrow Back Button
           GestureDetector(
             onTap: () {
-              Navigator.pop(context); // Veprimi për kthim prapa
+              Navigator.pop(context);
             },
             child: Container(
               width: 50,
@@ -545,7 +545,7 @@ class _AddCarOwnerState extends State<AddCarOwner> {
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: SvgPicture.asset(
-                    'assets/images/arrow_back.svg'), // Ikona për kthim prapa
+                    'assets/images/arrow_back.svg'),
               ),
             ),
           ),

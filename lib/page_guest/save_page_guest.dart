@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../util/add_car.dart';
 import '../util/custom_text.dart';
 
@@ -36,8 +36,8 @@ class SavePageGuest extends StatelessWidget {
                           height: 250,
                           fit: BoxFit.contain,
                         ),
-                        const Text(
-                          "No favorite cars added!",
+                         Text(
+                          AppLocalizations.of(context)!.noFavoriteCarsAdded,
                           style: TextStyle(
                             fontSize: 25,
                             color: Colors.grey,
@@ -242,7 +242,7 @@ class SavePageGuest extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CustomText(
-                              text: 'See more',
+                              text: AppLocalizations.of(context)!.seeMore,
                               isBold: false,
                               fontSize: 20,
                               color: Colors.white,

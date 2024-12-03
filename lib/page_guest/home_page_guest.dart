@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../util/custom_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePageGuest extends StatefulWidget {
   const HomePageGuest({super.key});
@@ -35,8 +36,8 @@ class _HomePageGuestState extends State<HomePageGuest> {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  "No cars available!",
+                 Text(
+                  AppLocalizations.of(context)!.noCarsAvailable,
                   style: TextStyle(
                     fontSize: 25,
                     color: Colors.grey,
@@ -103,21 +104,21 @@ class _HomePageGuestState extends State<HomePageGuest> {
             },
             itemBuilder: (BuildContext context) {
               return [
-                const PopupMenuItem(
+                 PopupMenuItem(
                   value: 'price_high',
-                  child: Text('Price: High to Low',style: TextStyle(fontFamily: 'Kanit',fontSize: 15),),
+                  child: Text(AppLocalizations.of(context)!.priceHighToLow,style: TextStyle(fontFamily: 'Kanit',fontSize: 15),),
                 ),
-                const PopupMenuItem(
+                 PopupMenuItem(
                   value: 'price_low',
-                  child: Text('Price: Low to High',style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
+                  child: Text(AppLocalizations.of(context)!.priceLowToHigh,style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
                 ),
-                const PopupMenuItem(
+                 PopupMenuItem(
                   value: 'milage_low',
-                  child: Text('Mileage: Low to High',style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
+                  child: Text(AppLocalizations.of(context)!.mileageLowToHigh,style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
                 ),
-                const PopupMenuItem(
+                 PopupMenuItem(
                   value: 'milage_high',
-                  child: Text('Mileage: High to Low',style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
+                  child: Text(AppLocalizations.of(context)!.mileageHighToLow,style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
                 ),
               ];
             },
@@ -325,7 +326,7 @@ class _HomePageGuestState extends State<HomePageGuest> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CustomText(
-                              text: 'See more',
+                              text: AppLocalizations.of(context)!.seeMore,
                               isBold: false,
                               fontSize: 20,
                               color: Colors.white,

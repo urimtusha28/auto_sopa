@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../util/add_car.dart';
 
 class SeeMoreDetailsGuest extends StatefulWidget {
@@ -101,10 +101,9 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildDetailColumn('Milage', widget.car.milage),
-                    _buildDetailColumn('Transmission', widget.car.transmission),
-                    _buildDetailColumn(
-                        'First registration', widget.car.registration),
+                    _buildDetailColumn(AppLocalizations.of(context)!.mileage, widget.car.milage),
+                    _buildDetailColumn(AppLocalizations.of(context)!.transmission, widget.car.transmission),
+                    _buildDetailColumn(AppLocalizations.of(context)!.firstRegistration, widget.car.registration),
                   ],
                 ),
               ),
@@ -114,10 +113,9 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildDetailColumn('Fuel type', widget.car.fuelType),
-                    _buildDetailColumn('Power', '${widget.car.power}hp'),
-                    _buildDetailColumn(
-                        'Consumer', '${widget.car.consumer} l/100(comb.)'),
+                    _buildDetailColumn(AppLocalizations.of(context)!.fuelType, widget.car.fuelType),
+                    _buildDetailColumn(AppLocalizations.of(context)!.power, '${widget.car.power}hp'),
+                    _buildDetailColumn(AppLocalizations.of(context)!.consumer, '${widget.car.consumer} l/100(comb.)'),
                   ],
                 ),
               ),
@@ -158,8 +156,8 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
 
               // Dropdown for Equipment
               ExpansionTile(
-                title: const Text(
-                  'Equipment',
+                title:  Text(
+                  AppLocalizations.of(context)!.equipment,
                   style: TextStyle(fontFamily: 'Kanit', fontSize: 22),
                 ),
                 children: [
@@ -180,10 +178,10 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                           .toList(),
                     ),
                   )
-                      : const Padding(
+                      :  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      'No equipment details available.',
+                      AppLocalizations.of(context)!.noEquipmentAvailable,
                       style: TextStyle(
                         fontSize: 16,
                         fontFamily: 'Kanit',
@@ -196,8 +194,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
 
               // Dropdown for Color and Interior
               ExpansionTile(
-                title: const Text(
-                  'Color and Interior',
+                title:  Text(AppLocalizations.of(context)!.colorAndInterior,
                   style: TextStyle(fontFamily: 'Kanit', fontSize: 22),
                 ),
                 children: [
@@ -207,7 +204,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Body Color: ${widget.car.bodyColor}',
+                          '${AppLocalizations.of(context)!.bodyColor}: ${widget.car.bodyColor}',
                           style: const TextStyle(
                             fontSize: 18,
                             fontFamily: 'Kanit',
@@ -215,7 +212,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                           ),
                         ),
                         Text(
-                          'Upholstery: ${widget.car.upholstery}',
+                          '${AppLocalizations.of(context)!.upholstery}: ${widget.car.upholstery}',
                           style: const TextStyle(
                             fontSize: 18,
                             fontFamily: 'Kanit',
@@ -223,7 +220,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                           ),
                         ),
                         Text(
-                          'Interior Color: ${widget.car.interiorColor}',
+                          '${AppLocalizations.of(context)!.colorAndInterior}: ${widget.car.interiorColor}',
                           style: const TextStyle(
                             fontSize: 18,
                             fontFamily: 'Kanit',
@@ -238,8 +235,8 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
 
               // Dropdown for Vehicle Description
               ExpansionTile(
-                title: const Text(
-                  'Vehicle Description',
+                title:  Text(
+                  AppLocalizations.of(context)!.vehicleDescription,
                   style: TextStyle(fontFamily: 'Kanit', fontSize: 22),
                 ),
                 children: [
@@ -248,7 +245,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                     child: Text(
                       widget.car.description.isNotEmpty
                           ? widget.car.description
-                          : 'No description available.',
+                          : AppLocalizations.of(context)!.noDescriptionAvailable,
                       style: const TextStyle(
                         fontSize: 18,
                         fontFamily: 'Kanit',
@@ -270,7 +267,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                displayInfo = 'Call Seller: 046571571';
+                                displayInfo = '${AppLocalizations.of(context)!.callSeller}: 046571571';
                               });
                             },
                             child: Container(
@@ -279,9 +276,9 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: const Color(0xFF2F89C0),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Text(
-                                  'Call seller',
+                                  AppLocalizations.of(context)!.callSeller,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Kanit',
@@ -297,7 +294,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                displayInfo = 'Email Seller: urimtusha@gmail.com';
+                                displayInfo = '${AppLocalizations.of(context)!.emailSeller}: urimtusha@gmail.com';
                               });
                             },
                             child: Container(
@@ -306,9 +303,9 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: const Color(0xFF2F89C0),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Text(
-                                  'Email',
+                                  AppLocalizations.of(context)!.email,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Kanit',
