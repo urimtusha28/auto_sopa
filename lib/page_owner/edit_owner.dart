@@ -1,10 +1,10 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../util/custom_text.dart';
 import '../util/add_car.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditOwner extends StatefulWidget {
   const EditOwner({Key? key}) : super(key: key);
@@ -63,20 +63,20 @@ class _EditOwnerState extends State<EditOwner> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text(
-                'Edit Car Details',
+               Text(
+                AppLocalizations.of(context)!.editCarDetails,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 20),
-              _buildInputField('Make', makeController),
-              _buildInputField('Model', modelController),
-              _buildInputField('Registration', registrationController),
-              _buildInputField('Milage', milageController),
-              _buildInputField('Price (€)', priceController),
-              _buildInputField('Location', locationController),
+              _buildInputField(AppLocalizations.of(context)!.make, makeController),
+              _buildInputField(AppLocalizations.of(context)!.model, modelController),
+              _buildInputField(AppLocalizations.of(context)!.registration, registrationController),
+              _buildInputField(AppLocalizations.of(context)!.mileage, milageController),
+              _buildInputField('${AppLocalizations.of(context)!.price} (€)', priceController),
+              _buildInputField(AppLocalizations.of(context)!.location, locationController),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -92,8 +92,8 @@ class _EditOwnerState extends State<EditOwner> {
                         color: const Color(0xFFFF2929),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const Text(
-                        'Delete',
+                      child:  Text(
+                        AppLocalizations.of(context)!.delete,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 17,
@@ -123,8 +123,8 @@ class _EditOwnerState extends State<EditOwner> {
                         color: const Color(0xFF2F89C0),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const Text(
-                        'Save',
+                      child:  Text(
+                        AppLocalizations.of(context)!.save,
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Kanit',
@@ -178,14 +178,7 @@ class _EditOwnerState extends State<EditOwner> {
                 fit: BoxFit.contain,
               ),
               const SizedBox(height: 20),
-              const Text(
-                "No cars available!",
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.grey,
-                  fontFamily: 'Kanit',
-                ),
-              ),
+               CustomText(text: AppLocalizations.of(context)!.noCarsAvailable, isBold: false, fontSize: 25, color: Colors.grey)
             ],
           ),
         )
@@ -246,25 +239,25 @@ class _EditOwnerState extends State<EditOwner> {
                               ),
                               const SizedBox(height: 5),
                               CustomText(
-                                text: 'Registration: ${car.registration}',
+                                text: '${AppLocalizations.of(context)!.registration}: ${car.registration}',
                                 fontSize: 18,
                                 isBold: false,
                                 color: Colors.black,
                               ),
                               CustomText(
-                                text: 'Milage: ${car.milage}',
+                                text: '${AppLocalizations.of(context)!.mileage}: ${car.milage}',
                                 fontSize: 18,
                                 isBold: false,
                                 color: Colors.black,
                               ),
                               CustomText(
-                                text: 'Price: ${car.price.toStringAsFixed(0)} €',
+                                text: '${AppLocalizations.of(context)!.price}: ${car.price.toStringAsFixed(0)} €',
                                 fontSize: 18,
                                 isBold: false,
                                 color: Colors.black,
                               ),
                               CustomText(
-                                text: 'Location: ${car.location}',
+                                text: '${AppLocalizations.of(context)!.location}: ${car.location}',
                                 fontSize: 18,
                                 isBold: false,
                                 color: Colors.black,

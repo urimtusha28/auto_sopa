@@ -36,14 +36,7 @@ class SavePageGuest extends StatelessWidget {
                           height: 250,
                           fit: BoxFit.contain,
                         ),
-                         Text(
-                          AppLocalizations.of(context)!.noFavoriteCarsAdded,
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.grey,
-                            fontFamily: 'Kanit',
-                          ),
-                        ),
+                         CustomText(text: AppLocalizations.of(context)!.noFavoriteCarsAdded, isBold: false, fontSize: 25, color: Colors.grey)
                       ],
                     ),
                   )
@@ -223,7 +216,7 @@ class SavePageGuest extends StatelessWidget {
                   );
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 15, right: 10),
+                  padding: const EdgeInsets.only(top: 15, right: 0),
                   child: Container(
                     width: 180,
                     height: 36,
@@ -244,7 +237,7 @@ class SavePageGuest extends StatelessWidget {
                             CustomText(
                               text: AppLocalizations.of(context)!.seeMore,
                               isBold: false,
-                              fontSize: 20,
+                              fontSize: 17,
                               color: Colors.white,
                             ),
                             const SizedBox(width: 5),

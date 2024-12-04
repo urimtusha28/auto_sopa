@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_sopa/util/custom_text.dart';
-import 'package:auto_sopa/base_screen.dart'; // Importo BaseScreen
+import 'package:auto_sopa/base_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -28,8 +30,8 @@ class _LoginState extends State<Login> {
     if (email.isEmpty || password.isEmpty) {
       // Kontrollo nëse fushat janë bosh
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Ju lutemi plotësoni të gjitha fushat!'),
+         SnackBar(
+          content: Text(AppLocalizations.of(context)!.pleaseFillAllFields),
           backgroundColor: Colors.red,
           duration: Duration(seconds: 2),
         ),
@@ -58,8 +60,8 @@ class _LoginState extends State<Login> {
     } else {
       // Nëse kredencialet janë të pasakta
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Email ose password i pasaktë!'),
+         SnackBar(
+          content: Text(AppLocalizations.of(context)!.passwordEmailIncorrect),
           backgroundColor: Colors.red,
           duration: Duration(seconds: 2),
         ),
@@ -80,7 +82,7 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 40),
               Center(
                 child: CustomText(
-                  text: 'Login',
+                  text: AppLocalizations.of(context)!.login,
                   isBold: true,
                   fontSize: 30,
                   color: Colors.black,
@@ -128,8 +130,8 @@ class _LoginState extends State<Login> {
                     activeColor: Colors.black,
                   ),
                   const SizedBox(width: 10),
-                  const Text(
-                    'Remember me',
+                   Text(
+                    AppLocalizations.of(context)!.rememberMe,
                     style: TextStyle(
                       fontFamily: 'Kanit',
                       fontSize: 18,
@@ -173,7 +175,7 @@ class _LoginState extends State<Login> {
                       ),
                       child: Center(
                         child: CustomText(
-                          text: 'Login',
+                          text: AppLocalizations.of(context)!.login,
                           isBold: false,
                           fontSize: 22,
                           color: Colors.white,
@@ -186,7 +188,7 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 20),
               Center(
                 child: CustomText(
-                  text: 'Forget password',
+                  text: AppLocalizations.of(context)!.forgetPassword,
                   isBold: false,
                   fontSize: 20,
                   color: const Color(0xFF2F89C0),

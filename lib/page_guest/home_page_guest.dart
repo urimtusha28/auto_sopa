@@ -36,14 +36,7 @@ class _HomePageGuestState extends State<HomePageGuest> {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 20),
-                 Text(
-                  AppLocalizations.of(context)!.noCarsAvailable,
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.grey,
-                    fontFamily: 'Kanit',
-                  ),
-                ),
+                 CustomText(text: AppLocalizations.of(context)!.noCarsAvailable, isBold: false, fontSize: 25, color: Colors.grey)
               ],
             ),
           )
@@ -321,22 +314,24 @@ class _HomePageGuestState extends State<HomePageGuest> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 40, right: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CustomText(
-                              text: AppLocalizations.of(context)!.seeMore,
-                              isBold: false,
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 5),
-                            SvgPicture.asset(
-                              'assets/images/arrow_forward.svg',
-                              color: Colors.white,
-                            ),
-                          ],
+                        child: Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CustomText(
+                                text: AppLocalizations.of(context)!.seeMore,
+                                isBold: false,
+                                fontSize: 17,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(width: 5),
+                              SvgPicture.asset(
+                                'assets/images/arrow_forward.svg',
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
