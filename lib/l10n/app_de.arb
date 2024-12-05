@@ -5,7 +5,7 @@
   "whichBodyType": "Welche Karosserieformen ziehen Sie für Ihr neues Auto in Betracht?",
   "suv": "SUV",
   "sedan": "Limousine",
-  "hatchBack": "Kompaktwagen",
+  "compact": "Kompaktwagen",
   "convertible": "Cabrio",
   "whichFuelType": "Welche Kraftstoffart bevorzugen Sie?",
   "diesel": "Diesel",

@@ -18,10 +18,12 @@ class Car {
   final String interiorColor;
   final String upholstery;
   final String description;
+  final String bodyType;
 
   Car({
     required this.make,
     required this.model,
+    required this.bodyType,
     required this.fuelType,
     required this.registration,
     required this.milage,
@@ -43,7 +45,7 @@ class Car {
     String? model,
     String? fuelType,
     String? registration,
-    String? milage,
+    String? mileage,
     String? transmission,
     String? location,
     double? price,
@@ -59,6 +61,7 @@ class Car {
     return Car(
       make: make ?? this.make,
       model: model ?? this.model,
+      bodyType: bodyType ?? this.bodyType,
       fuelType: fuelType ?? this.fuelType,
       registration: registration ?? this.registration,
       milage: milage ?? this.milage,

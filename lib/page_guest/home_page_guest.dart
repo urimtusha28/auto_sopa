@@ -8,7 +8,9 @@ import '../util/custom_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePageGuest extends StatefulWidget {
-  const HomePageGuest({super.key});
+  final List<Car> filteredCars; // Lista e veturave të filtruara
+
+  const HomePageGuest({Key? key, required this.filteredCars}) : super(key: key);
 
   @override
   State<HomePageGuest> createState() => _HomePageGuestState();
@@ -17,7 +19,7 @@ class HomePageGuest extends StatefulWidget {
 class _HomePageGuestState extends State<HomePageGuest> {
   @override
   Widget build(BuildContext context) {
-    final cars = Provider.of<CarProvider>(context).cars;
+    final cars = widget.filteredCars; // Përdor veturat e filtruara
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -30,13 +32,18 @@ class _HomePageGuestState extends State<HomePageGuest> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Lottie.asset(
-                  'assets/lottie/Animation_4.json', // Rruga e animacionit Lottie
+                  'assets/lottie/Animation_4.json',
                   width: 250,
                   height: 250,
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 20),
-                 CustomText(text: AppLocalizations.of(context)!.noCarsAvailable, isBold: false, fontSize: 25, color: Colors.grey)
+                CustomText(
+                  text: AppLocalizations.of(context)!.noCarsAvailable,
+                  isBold: false,
+                  fontSize: 25,
+                  color: Colors.grey,
+                ),
               ],
             ),
           )
@@ -55,14 +62,13 @@ class _HomePageGuestState extends State<HomePageGuest> {
 
   Widget _buildSearchAndFilter() {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
+      padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Arrow Back Button
           GestureDetector(
             onTap: () {
-              Navigator.pop(context); // Veprimi për kthim prapa
+              Navigator.pop(context);
             },
             child: Container(
               width: 50,
@@ -78,7 +84,6 @@ class _HomePageGuestState extends State<HomePageGuest> {
             ),
           ),
           const SizedBox(width: 10),
-          // Filter Button with Dropdown
           PopupMenuButton<String>(
             icon: Container(
               width: 50,
@@ -93,25 +98,37 @@ class _HomePageGuestState extends State<HomePageGuest> {
               ),
             ),
             onSelected: (String value) {
-              _sortCars(value); // Thërret funksionin për renditje
+              _sortCars(value);
             },
             itemBuilder: (BuildContext context) {
               return [
-                 PopupMenuItem(
+                PopupMenuItem(
                   value: 'price_high',
-                  child: Text(AppLocalizations.of(context)!.priceHighToLow,style: TextStyle(fontFamily: 'Kanit',fontSize: 15),),
+                  child: Text(
+                    AppLocalizations.of(context)!.priceHighToLow,
+                    style: const TextStyle(fontFamily: 'Kanit', fontSize: 15),
+                  ),
                 ),
-                 PopupMenuItem(
+                PopupMenuItem(
                   value: 'price_low',
-                  child: Text(AppLocalizations.of(context)!.priceLowToHigh,style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
+                  child: Text(
+                    AppLocalizations.of(context)!.priceLowToHigh,
+                    style: const TextStyle(fontFamily: 'Kanit', fontSize: 15),
+                  ),
                 ),
-                 PopupMenuItem(
+                PopupMenuItem(
                   value: 'milage_low',
-                  child: Text(AppLocalizations.of(context)!.mileageLowToHigh,style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
+                  child: Text(
+                    AppLocalizations.of(context)!.mileageLowToHigh,
+                    style: const TextStyle(fontFamily: 'Kanit', fontSize: 15),
+                  ),
                 ),
-                 PopupMenuItem(
+                PopupMenuItem(
                   value: 'milage_high',
-                  child: Text(AppLocalizations.of(context)!.mileageHighToLow,style: TextStyle(fontFamily: 'Kanit',fontSize: 15)),
+                  child: Text(
+                    AppLocalizations.of(context)!.mileageHighToLow,
+                    style: const TextStyle(fontFamily: 'Kanit', fontSize: 15),
+                  ),
                 ),
               ];
             },
@@ -142,7 +159,6 @@ class _HomePageGuestState extends State<HomePageGuest> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Favorite Icon and Image
           Padding(
             padding: const EdgeInsets.all(7),
             child: Stack(
@@ -168,8 +184,7 @@ class _HomePageGuestState extends State<HomePageGuest> {
                   right: 10,
                   child: GestureDetector(
                     onTap: () {
-                      carProvider
-                          .toggleFavorite(index); // Menaxhoni preferencat
+                      carProvider.toggleFavorite(index);
                     },
                     child: SvgPicture.asset(
                       carProvider.isFavorite(index)
@@ -183,23 +198,23 @@ class _HomePageGuestState extends State<HomePageGuest> {
               ],
             ),
           ),
-
-          // Title and Details
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               children: [
                 CustomText(
-                    text: car.make,
-                    isBold: true,
-                    fontSize: 25,
-                    color: Colors.black),
+                  text: car.make,
+                  isBold: true,
+                  fontSize: 25,
+                  color: Colors.black,
+                ),
                 const SizedBox(width: 10),
                 CustomText(
-                    text: car.model,
-                    isBold: true,
-                    fontSize: 25,
-                    color: Colors.black),
+                  text: car.model,
+                  isBold: true,
+                  fontSize: 25,
+                  color: Colors.black,
+                ),
               ],
             ),
           ),
@@ -210,39 +225,41 @@ class _HomePageGuestState extends State<HomePageGuest> {
                 SvgPicture.asset('assets/images/calendar_icon.svg'),
                 const SizedBox(width: 3),
                 CustomText(
-                    text: car.registration,
-                    isBold: false,
-                    fontSize: 17,
-                    color: const Color(0xFF828282)),
+                  text: car.registration,
+                  isBold: false,
+                  fontSize: 17,
+                  color: const Color(0xFF828282),
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset('assets/images/road_icon.svg'),
                 const SizedBox(width: 3),
                 CustomText(
-                    text: car.milage,
-                    isBold: false,
-                    fontSize: 17,
-                    color: const Color(0xFF828282)),
+                  text: car.milage,
+                  isBold: false,
+                  fontSize: 17,
+                  color: const Color(0xFF828282),
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset('assets/images/fuel_type_icon.svg'),
                 const SizedBox(width: 3),
                 CustomText(
-                    text: car.fuelType,
-                    isBold: false,
-                    fontSize: 17,
-                    color: const Color(0xFF828282)),
+                  text: car.fuelType,
+                  isBold: false,
+                  fontSize: 17,
+                  color: const Color(0xFF828282),
+                ),
                 const SizedBox(width: 10),
                 SvgPicture.asset('assets/images/transmission_icon.svg'),
                 const SizedBox(width: 3),
                 CustomText(
-                    text: car.transmission,
-                    isBold: false,
-                    fontSize: 17,
-                    color: const Color(0xFF828282)),
+                  text: car.transmission,
+                  isBold: false,
+                  fontSize: 17,
+                  color: const Color(0xFF828282),
+                ),
               ],
             ),
           ),
-
-          // Location
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -250,16 +267,16 @@ class _HomePageGuestState extends State<HomePageGuest> {
                 SvgPicture.asset('assets/images/location_color_icon.svg'),
                 const SizedBox(width: 5),
                 Flexible(
-                    child: CustomText(
-                        text: car.location,
-                        isBold: false,
-                        fontSize: 20,
-                        color: const Color(0xFF828282))),
+                  child: CustomText(
+                    text: car.location,
+                    isBold: false,
+                    fontSize: 20,
+                    color: const Color(0xFF828282),
+                  ),
+                ),
               ],
             ),
           ),
-
-          // Price and "See More"
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -267,10 +284,11 @@ class _HomePageGuestState extends State<HomePageGuest> {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: CustomText(
-                    text: '${car.price.toStringAsFixed(0)} €',
-                    isBold: true,
-                    fontSize: 28,
-                    color: Colors.black),
+                  text: '${car.price.toStringAsFixed(0)} €',
+                  isBold: true,
+                  fontSize: 28,
+                  color: Colors.black,
+                ),
               ),
               GestureDetector(
                 onTap: () {
@@ -280,15 +298,13 @@ class _HomePageGuestState extends State<HomePageGuest> {
                       pageBuilder: (context, animation, secondaryAnimation) =>
                           SeeMoreDetailsGuest(car: car),
                       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        // Animacioni i lëvizjes nga e djathta në të majtë
-                        const begin = Offset(1.0, 0.0);  // Lëvizja nga e djathta
-                        const end = Offset.zero;  // Pozita përfundimtare
-                        const curve = Curves.easeInOut;  // Kurva e animacionit
+                        const begin = Offset(1.0, 0.0);
+                        const end = Offset.zero;
+                        const curve = Curves.easeInOut;
 
                         var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
                         var offsetAnimation = animation.drive(tween);
 
-                        // Animacioni i kalimit me zbehje
                         var fadeAnimation = animation.drive(Tween(begin: 0.0, end: 1.0));
 
                         return FadeTransition(
@@ -314,31 +330,28 @@ class _HomePageGuestState extends State<HomePageGuest> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 40, right: 5),
-                        child: Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CustomText(
-                                text: AppLocalizations.of(context)!.seeMore,
-                                isBold: false,
-                                fontSize: 17,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(width: 5),
-                              SvgPicture.asset(
-                                'assets/images/arrow_forward.svg',
-                                color: Colors.white,
-                              ),
-                            ],
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CustomText(
+                              text: AppLocalizations.of(context)!.seeMore,
+                              isBold: false,
+                              fontSize: 17,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(width: 5),
+                            SvgPicture.asset(
+                              'assets/images/arrow_forward.svg',
+                              color: Colors.white,
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-              )
-
+              ),
             ],
           ),
         ],
@@ -357,15 +370,13 @@ class _HomePageGuestState extends State<HomePageGuest> {
         carProvider.cars.sort((a, b) => a.price.compareTo(b.price));
         break;
       case 'milage_low':
-        carProvider.cars.sort(
-                (a, b) => int.parse(a.milage).compareTo(int.parse(b.milage)));
+        carProvider.cars.sort((a, b) => int.parse(a.milage).compareTo(int.parse(b.milage)));
         break;
       case 'milage_high':
-        carProvider.cars.sort(
-                (a, b) => int.parse(b.milage).compareTo(int.parse(a.milage)));
+        carProvider.cars.sort((a, b) => int.parse(b.milage).compareTo(int.parse(a.milage)));
         break;
     }
 
-    setState(() {}); // Rifreskon ndërfaqen për të reflektuar renditjen
+    setState(() {});
   }
 }

@@ -26,120 +26,130 @@ class _EditOwnerState extends State<EditOwner> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 10,
-                spreadRadius: 5,
-              ),
-            ],
-          ),
-          padding: EdgeInsets.only(
-            top: 20,
-            left: 20,
-            right: 20,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 50,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+      builder: (_) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.8, // Madhësia fillestare e modal-it
+        minChildSize: 0.5, // Madhësia minimale
+        maxChildSize: 0.9, // Madhësia maksimale
+        builder: (BuildContext context, ScrollController scrollController) {
+          return SingleChildScrollView(
+            controller: scrollController,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
                 ),
-              ),
-              const SizedBox(height: 20),
-               Text(
-                AppLocalizations.of(context)!.editCarDetails,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 20),
-              _buildInputField(AppLocalizations.of(context)!.make, makeController),
-              _buildInputField(AppLocalizations.of(context)!.model, modelController),
-              _buildInputField(AppLocalizations.of(context)!.registration, registrationController),
-              _buildInputField(AppLocalizations.of(context)!.mileage, milageController),
-              _buildInputField('${AppLocalizations.of(context)!.price} (€)', priceController),
-              _buildInputField(AppLocalizations.of(context)!.location, locationController),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Provider.of<CarProvider>(context, listen: false).deleteCar(index);
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFF2929),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child:  Text(
-                        AppLocalizations.of(context)!.delete,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontFamily: 'Kanit',
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      final updatedCar = car.copyWith(
-                        make: makeController.text,
-                        model: modelController.text,
-                        registration: registrationController.text,
-                        milage: milageController.text,
-                        price: double.parse(priceController.text),
-                        location: locationController.text,
-                      );
-                      Provider.of<CarProvider>(context, listen: false)
-                          .updateCar(updatedCar, index);
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF2F89C0),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child:  Text(
-                        AppLocalizations.of(context)!.save,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Kanit',
-                          fontSize: 17,
-                        ),
-                      ),
-                    ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    spreadRadius: 5,
                   ),
                 ],
               ),
-            ],
-          ),
-        ),
+              padding: EdgeInsets.only(
+                top: 20,
+                left: 20,
+                right: 20,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Container(
+                      width: 50,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    AppLocalizations.of(context)!.editCarDetails,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  _buildInputField(AppLocalizations.of(context)!.make, makeController),
+                  _buildInputField(AppLocalizations.of(context)!.model, modelController),
+                  _buildInputField(AppLocalizations.of(context)!.registration, registrationController),
+                  _buildInputField(AppLocalizations.of(context)!.mileage, milageController),
+                  _buildInputField('${AppLocalizations.of(context)!.price} (€)', priceController),
+                  _buildInputField(AppLocalizations.of(context)!.location, locationController),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Provider.of<CarProvider>(context, listen: false).deleteCar(index);
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFF2929),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context)!.delete,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontFamily: 'Kanit',
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () {
+                          final updatedCar = car.copyWith(
+                            make: makeController.text,
+                            model: modelController.text,
+                            registration: registrationController.text,
+                            mileage: milageController.text,
+                            price: double.parse(priceController.text),
+                            location: locationController.text,
+                          );
+                          Provider.of<CarProvider>(context, listen: false)
+                              .updateCar(updatedCar, index);
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2F89C0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context)!.save,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Kanit',
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
+
 
   }
 

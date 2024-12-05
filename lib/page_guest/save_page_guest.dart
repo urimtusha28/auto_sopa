@@ -100,14 +100,14 @@ class SavePageGuest extends StatelessWidget {
                 CustomText(
                   text: car.make,
                   isBold: true,
-                  fontSize: 27,
+                  fontSize: 25,
                   color: Colors.black,
                 ),
                 const SizedBox(width: 10),
                 CustomText(
                   text: car.model,
                   isBold: true,
-                  fontSize: 27,
+                  fontSize: 25,
                   color: Colors.black,
                 ),
               ],
@@ -165,7 +165,7 @@ class SavePageGuest extends StatelessWidget {
                   child: CustomText(
                     text: car.location,
                     isBold: false,
-                    fontSize: 18,
+                    fontSize: 20,
                     color: const Color(0xFF828282),
                   ),
                 ),

@@ -1,3 +1,4 @@
+import 'package:auto_sopa/util/custom_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -84,14 +85,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
                 padding: const EdgeInsets.only(left: 20),
                 child: Row(
                   children: [
-                    Text(
-                      '${widget.car.make} ${widget.car.model}',
-                      style: const TextStyle(
-                        fontFamily: 'Kanit',
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    CustomText(text: '${widget.car.make} ${widget.car.model}', isBold: true, fontSize: 25, color: Colors.black)
                   ],
                 ),
               ),

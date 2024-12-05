@@ -19,9 +19,6 @@ class _AddCarOwnerState extends State<AddCarOwner> {
   final TextEditingController makeController = TextEditingController();
   final TextEditingController modelController = TextEditingController();
   final TextEditingController registrationController = TextEditingController();
-  final TextEditingController bodyTypeController = TextEditingController();
-  final TextEditingController fuelTypeController = TextEditingController();
-  final TextEditingController transmissionController = TextEditingController();
   final TextEditingController locationLineController = TextEditingController();
   final TextEditingController finalPriceController = TextEditingController();
   final TextEditingController powerController = TextEditingController();
@@ -34,6 +31,9 @@ class _AddCarOwnerState extends State<AddCarOwner> {
   final List<String> selectedBodyColors = [];
   final List<String> selectedInteriorColors = [];
   final List<String> selectedUpholstery = [];
+  final List<String> selectedBodyType = [];
+  final List<String> selectedFuelType = [];
+  final List<String> selectedTransmission = [];
 
   Future<void> _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -57,56 +57,44 @@ class _AddCarOwnerState extends State<AddCarOwner> {
       _showSnackBar(AppLocalizations.of(context)!.pleaseFillRegistration);
       return;
     }
-    if (bodyTypeController.text.isEmpty) {
-      _showSnackBar(AppLocalizations.of(context)!.pleaseFillBodyType);
-      return;
-    }
-    if (fuelTypeController.text.isEmpty) {
-      _showSnackBar(AppLocalizations.of(context)!.pleaseFillFuelType);
-      return;
-    }
-    if (transmissionController.text.isEmpty) {
-      _showSnackBar(AppLocalizations.of(context)!.pleaseFillTransmission);
-      return;
-    }
     if (locationLineController.text.isEmpty) {
       _showSnackBar(AppLocalizations.of(context)!.pleaseFillLocation);
       return;
     }
-    if (finalPriceController.text.isEmpty) {
-      _showSnackBar(AppLocalizations.of(context)!.pleaseFillPrice);
-      return;
-    }
-    if (double.tryParse(finalPriceController.text) == null) {
+    if (finalPriceController.text.isEmpty ||
+        double.tryParse(finalPriceController.text) == null) {
       _showSnackBar(AppLocalizations.of(context)!.pleaseFillValidNumber);
       return;
     }
-    if (powerController.text.isEmpty) {
-      _showSnackBar(AppLocalizations.of(context)!.pleaseFillPower);
-      return;
-    }
-    if (int.tryParse(powerController.text) == null) {
+    if (powerController.text.isEmpty ||
+        int.tryParse(powerController.text) == null) {
       _showSnackBar(AppLocalizations.of(context)!.powerMustBeInt);
       return;
     }
-    if (milageController.text.isEmpty) {
-      _showSnackBar(AppLocalizations.of(context)!.pleaseFillMileage);
-      return;
-    }
-    if (double.tryParse(milageController.text) == null) {
+    if (milageController.text.isEmpty ||
+        double.tryParse(milageController.text) == null) {
       _showSnackBar(AppLocalizations.of(context)!.mileageMustBeNumber);
       return;
     }
-    if (consumerController.text.isEmpty) {
-      _showSnackBar(AppLocalizations.of(context)!.consumerMustBeNumber);
-      return;
-    }
-    if (double.tryParse(consumerController.text) == null) {
+    if (consumerController.text.isEmpty ||
+        double.tryParse(consumerController.text) == null) {
       _showSnackBar(AppLocalizations.of(context)!.consumerMustBeNumber);
       return;
     }
     if (carImages.isEmpty) {
       _showSnackBar(AppLocalizations.of(context)!.pleaseAddImage);
+      return;
+    }
+    if (selectedBodyType.isEmpty) {
+      _showSnackBar(AppLocalizations.of(context)!.pleaseFillBodyType);
+      return;
+    }
+    if (selectedFuelType.isEmpty) {
+      _showSnackBar(AppLocalizations.of(context)!.pleaseFillFuelType);
+      return;
+    }
+    if (selectedTransmission.isEmpty) {
+      _showSnackBar(AppLocalizations.of(context)!.pleaseFillTransmission);
       return;
     }
 
@@ -115,8 +103,6 @@ class _AddCarOwnerState extends State<AddCarOwner> {
       model: modelController.text,
       milage: milageController.text,
       registration: registrationController.text,
-      fuelType: fuelTypeController.text,
-      transmission: transmissionController.text,
       location: locationLineController.text,
       price: double.parse(finalPriceController.text),
       power: int.parse(powerController.text),
@@ -127,6 +113,10 @@ class _AddCarOwnerState extends State<AddCarOwner> {
       interiorColor:
           selectedInteriorColors.isNotEmpty ? selectedInteriorColors.first : '',
       upholstery: selectedUpholstery.isNotEmpty ? selectedUpholstery.first : '',
+      bodyType: selectedBodyType.isNotEmpty ? selectedBodyType.first : '',
+      fuelType: selectedFuelType.isNotEmpty ? selectedFuelType.first : '',
+      transmission:
+          selectedTransmission.isNotEmpty ? selectedTransmission.first : '',
       description: vehicleDescriptionController.text,
     );
 
@@ -149,7 +139,28 @@ class _AddCarOwnerState extends State<AddCarOwner> {
 
   @override
   Widget build(BuildContext context) {
-    //Lista per material
+    final List<String> bodyType = [
+      AppLocalizations.of(context)!.suv,
+      AppLocalizations.of(context)!.sedan,
+      AppLocalizations.of(context)!.compact,
+      AppLocalizations.of(context)!.convertible,
+      AppLocalizations.of(context)!.van,
+      AppLocalizations.of(context)!.transporter,
+      AppLocalizations.of(context)!.coupe,
+    ];
+    final List<String> fuelType = [
+      AppLocalizations.of(context)!.diesel,
+      AppLocalizations.of(context)!.gasoline,
+      AppLocalizations.of(context)!.electric,
+      AppLocalizations.of(context)!.hybrid,
+      AppLocalizations.of(context)!.lpg,
+    ];
+    final List<String> transmissionType = [
+      AppLocalizations.of(context)!.manual,
+      AppLocalizations.of(context)!.automatic,
+      AppLocalizations.of(context)!.semiAutomatic,
+      AppLocalizations.of(context)!.fOneShift
+    ];
     final List<String> upholsteryOptions = [
       AppLocalizations.of(context)!.fullLeather,
       AppLocalizations.of(context)!.partLeather,
@@ -157,7 +168,6 @@ class _AddCarOwnerState extends State<AddCarOwner> {
       AppLocalizations.of(context)!.alcantara,
       AppLocalizations.of(context)!.velour,
     ];
-    //Lista per ngjyren e vetrues
     final List<String> bodyColors = [
       AppLocalizations.of(context)!.black,
       AppLocalizations.of(context)!.white,
@@ -166,7 +176,13 @@ class _AddCarOwnerState extends State<AddCarOwner> {
       AppLocalizations.of(context)!.blue,
       AppLocalizations.of(context)!.green,
     ];
-    // Lista per equipment
+    final List<String> interiorColors = [
+      AppLocalizations.of(context)!.black,
+      AppLocalizations.of(context)!.white,
+      AppLocalizations.of(context)!.brown,
+      AppLocalizations.of(context)!.red,
+      AppLocalizations.of(context)!.darkGreen,
+    ];
     final List<String> equipmentOptions = [
       AppLocalizations.of(context)!.parkingSensors,
       AppLocalizations.of(context)!.satnav,
@@ -192,15 +208,6 @@ class _AddCarOwnerState extends State<AddCarOwner> {
       AppLocalizations.of(context)!.roofRails,
       AppLocalizations.of(context)!.fogLights,
       AppLocalizations.of(context)!.electricFoldingMirroring,
-      AppLocalizations.of(context)!.whichBodyColor,
-    ];
-    //Lista per interior color
-    final List<String> interiorColors = [
-      AppLocalizations.of(context)!.black,
-      AppLocalizations.of(context)!.white,
-      AppLocalizations.of(context)!.brown,
-      AppLocalizations.of(context)!.red,
-      AppLocalizations.of(context)!.darkGreen,
     ];
 
     return Scaffold(
@@ -212,37 +219,71 @@ class _AddCarOwnerState extends State<AddCarOwner> {
             children: [
               _buildSearchAndFilter(),
               _buildStepHeader(AppLocalizations.of(context)!.stepOneFromThree),
-              _buildInputField(AppLocalizations.of(context)!.make, makeController),
-              _buildInputField(AppLocalizations.of(context)!.model, modelController),
-              _buildInputField(AppLocalizations.of(context)!.firstRegistration, registrationController),
-              _buildInputField(AppLocalizations.of(context)!.bodyType, bodyTypeController),
-              _buildInputField(AppLocalizations.of(context)!.fuelType, fuelTypeController),
-              _buildInputField(AppLocalizations.of(context)!.transmission, transmissionController),
-              _buildInputField(AppLocalizations.of(context)!.location, locationLineController),
-              _buildInputField(AppLocalizations.of(context)!.mileage, milageController),
-              _buildInputField(AppLocalizations.of(context)!.consumer, consumerController),
+              _buildInputField(
+                  AppLocalizations.of(context)!.make, makeController),
+              _buildInputField(
+                  AppLocalizations.of(context)!.model, modelController),
+              _buildInputField(AppLocalizations.of(context)!.firstRegistration,
+                  registrationController),
+              _buildInputField(AppLocalizations.of(context)!.location,
+                  locationLineController),
+              _buildInputField(
+                  AppLocalizations.of(context)!.mileage, milageController),
+              _buildInputField(
+                  AppLocalizations.of(context)!.consumer, consumerController),
               const SizedBox(height: 20),
               _buildStepHeader(AppLocalizations.of(context)!.stepTwoFromThree),
               _buildImagePicker(),
               const SizedBox(height: 20),
-              _buildRowInputFields(AppLocalizations.of(context)!.finalPrice,finalPriceController, AppLocalizations.of(context)!.power, powerController,
+              _buildRowInputFields(
+                AppLocalizations.of(context)!.finalPrice,
+                finalPriceController,
+                AppLocalizations.of(context)!.power,
+                powerController,
               ),
               const SizedBox(height: 20),
-              _buildStepHeader(AppLocalizations.of(context)!.stepThreeFromThree),
+              _buildStepHeader(
+                  AppLocalizations.of(context)!.stepThreeFromThree),
               const SizedBox(height: 20),
-              _buildSelectionHeader(AppLocalizations.of(context)!.selectEquipment),
+
+              // Body Type Selection
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.selectBodyType),
+              _buildHorizontalScroll(bodyType, selectedBodyType),
+              const SizedBox(height: 20),
+              // Fuel Type Selection
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.selectFuelType),
+              _buildHorizontalScroll(fuelType, selectedFuelType),
+              const SizedBox(height: 20),
+              // Transmission Selection
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.selectTransmission),
+              _buildHorizontalScroll(transmissionType, selectedTransmission),
+              const SizedBox(height: 20),
+              // Equipment Selection
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.selectEquipment),
               _buildHorizontalScroll(equipmentOptions, selectedEquipment),
               const SizedBox(height: 20),
-              _buildSelectionHeader(AppLocalizations.of(context)!.selectBodyColor),
+              // Body Color Selection
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.selectBodyColor),
               _buildHorizontalScroll(bodyColors, selectedBodyColors),
               const SizedBox(height: 20),
-              _buildSelectionHeader(AppLocalizations.of(context)!.selectInteriorColor),
+              // Interior Color Selection
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.selectInteriorColor),
               _buildHorizontalScroll(interiorColors, selectedInteriorColors),
               const SizedBox(height: 20),
-              _buildSelectionHeader(AppLocalizations.of(context)!.selectUpholstery),
+              // Upholstery Selection
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.selectUpholstery),
               _buildHorizontalScroll(upholsteryOptions, selectedUpholstery),
               const SizedBox(height: 20),
-              _buildSelectionHeader(AppLocalizations.of(context)!.vehicleDescription),
+              // Vehicle Description
+              _buildSelectionHeader(
+                  AppLocalizations.of(context)!.vehicleDescription),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
@@ -260,10 +301,11 @@ class _AddCarOwnerState extends State<AddCarOwner> {
                         fontFamily: 'Kanit',
                         color: Color(0xFF828282),
                       ),
-                      decoration:  InputDecoration(
+                      decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: AppLocalizations.of(context)!.enterVehicleDescription,
-                        hintStyle: TextStyle(
+                        hintText: AppLocalizations.of(context)!
+                            .enterVehicleDescription,
+                        hintStyle: const TextStyle(
                           fontSize: 16,
                           fontFamily: 'Kanit',
                           color: Color(0xFF828282),
@@ -274,6 +316,8 @@ class _AddCarOwnerState extends State<AddCarOwner> {
                 ),
               ),
               const SizedBox(height: 30),
+
+              // Finish Button
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: Row(
@@ -288,10 +332,10 @@ class _AddCarOwnerState extends State<AddCarOwner> {
                           borderRadius: BorderRadius.circular(10),
                           color: const Color(0xFF2F89C0),
                         ),
-                        child:  Center(
+                        child: Center(
                           child: Text(
                             AppLocalizations.of(context)!.finish,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 19,
                               fontFamily: 'Kanit',
@@ -400,8 +444,9 @@ class _AddCarOwnerState extends State<AddCarOwner> {
         width: double.infinity,
         height: 40,
         decoration: BoxDecoration(
-            color: const Color(0xFFD9D9D9),
-            borderRadius: BorderRadius.circular(10)),
+          color: const Color(0xFFD9D9D9),
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: TextField(
@@ -439,10 +484,10 @@ class _AddCarOwnerState extends State<AddCarOwner> {
             color: const Color(0xFFD9D9D9),
           ),
           child: carImages.isEmpty
-              ?  Center(
+              ? Center(
                   child: Text(
                     AppLocalizations.of(context)!.clickToAddImage,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Kanit',
                       fontSize: 16,
                       color: Color(0xFF828282),
@@ -458,16 +503,71 @@ class _AddCarOwnerState extends State<AddCarOwner> {
                   ),
                   itemCount: carImages.length,
                   itemBuilder: (context, index) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.file(
-                        carImages[index],
-                        width: 80,
-                      ),
+                    return Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.file(
+                            carImages[index],
+                            width: 80,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          top: 2,
+                          right: 2,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                carImages.removeAt(index);
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red.withOpacity(0.8),
+                              ),
+                              child: const Icon(
+                                Icons.close,
+                                size: 15,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildSearchAndFilter() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: SvgPicture.asset('assets/images/arrow_back.svg'),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -520,35 +620,6 @@ class _AddCarOwnerState extends State<AddCarOwner> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildSearchAndFilter() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // Arrow Back Button
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: SvgPicture.asset('assets/images/arrow_back.svg'),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

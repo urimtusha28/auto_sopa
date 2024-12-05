@@ -6,10 +6,13 @@ import 'package:auto_sopa/page_owner/home_page_owner.dart';
 import 'package:auto_sopa/page_owner/settings_owner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../util/add_car.dart';
 
 class BaseScreen extends StatefulWidget {
   final bool isGuest;
-  BaseScreen({super.key, required this.isGuest});
+  final List<Car>? filteredCars; // Lista e veturave të filtruara
+
+  BaseScreen({super.key, required this.isGuest, this.filteredCars});
 
   @override
   State<BaseScreen> createState() => _BaseScreenState();
@@ -24,45 +27,54 @@ class _BaseScreenState extends State<BaseScreen> {
     });
   }
 
-  final List<Widget> pagesOwner = [
-    HomePageOwner(),
-    EditOwner(),
-    SettingsOwner(),
-  ];
-
-  final List<Widget> pagesGuest = [
-    HomePageGuest(),
-    SavePageGuest(),
-    SettingsGuest(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    // Lista e faqeve të pronarit
+    final List<Widget> pagesOwner = [
+      HomePageOwner(),
+      EditOwner(),
+      SettingsOwner(),
+    ];
+
+    // Lista e faqeve për mysafirë me filtrim
+    final List<Widget> pagesGuest = [
+      HomePageGuest(
+        // Përdor veturat e filtruara, ose të gjitha veturat kur `filteredCars` është null/bosh
+        filteredCars: widget.filteredCars ?? [],
+      ),
+      SavePageGuest(),
+      SettingsGuest(),
+    ];
+
+    // Zgjidh faqet bazuar në rolin
     final List<Widget> selectedPage = widget.isGuest ? pagesGuest : pagesOwner;
 
+    // Ikonat për mysafirë
     final List<Map<String, String>> iconsGuest = [
       {'icon': 'assets/images/home_icon.svg', 'label': ''},
       {'icon': 'assets/images/save_icon.svg', 'label': ''},
       {'icon': 'assets/images/settings_icon.svg', 'label': ''},
     ];
 
+    // Ikonat për pronar
     final List<Map<String, String>> iconsOwner = [
       {'icon': 'assets/images/home_icon.svg', 'label': ''},
       {'icon': 'assets/images/edit_icon.svg', 'label': ''},
       {'icon': 'assets/images/settings_icon.svg', 'label': ''},
     ];
 
+    // Zgjidh ikonat bazuar në rolin
     final icons = widget.isGuest ? iconsGuest : iconsOwner;
 
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
-      body: selectedPage[_selectedIndex],
+      backgroundColor: const Color(0xFFF5F5F5),
+      body: selectedPage[_selectedIndex], // Faqja aktuale
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0), // Margin nga fundi dhe anët
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: Color(0xFF2F89C0),
+            color: const Color(0xFF2F89C0),
             borderRadius: BorderRadius.circular(30), // Borderradius për kornizat
           ),
           child: Row(
@@ -72,12 +84,15 @@ class _BaseScreenState extends State<BaseScreen> {
                   (index) => GestureDetector(
                 onTap: () => _navigateBottomBar(index),
                 child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  duration: const Duration(milliseconds: 300),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     color: _selectedIndex == index
                         ? Colors.white
-                        : Color(0xFF2F89C0), // Ndryshon ngjyrën kur është i zgjedhur
+                        : const Color(0xFF2F89C0), // Ndryshon ngjyrën kur është i zgjedhur
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: SvgPicture.asset(

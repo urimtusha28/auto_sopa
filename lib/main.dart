@@ -32,16 +32,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('sq'), // Albanian
-        Locale('en'), // English
-        Locale('de'), // German
+        Locale('sq'),
+        Locale('en'),
+        Locale('de'),
       ],
       locale: localeProvider.locale,
       home: const Started(),
