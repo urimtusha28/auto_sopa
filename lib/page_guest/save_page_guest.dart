@@ -15,7 +15,7 @@ class SavePageGuest extends StatelessWidget {
     final carProvider = Provider.of<CarProvider>(context);
     final favoriteCars = carProvider.favoriteCars
         .map((index) => carProvider.cars[index])
-        .toList(); // Merr vetëm veturat e preferuara.
+        .toList(); // Merr vetem veturat e preferuara.
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -31,7 +31,7 @@ class SavePageGuest extends StatelessWidget {
                     child: Column(
                       children: [
                         Lottie.asset(
-                          'assets/lottie/Animation_1.json', // Shto rrugën e skedarit Lottie
+                          'assets/lottie/Animation_1.json',
                           width: 250,
                           height: 250,
                           fit: BoxFit.contain,

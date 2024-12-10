@@ -28,31 +28,30 @@ class _ChoosePageGuestState extends State<ChoosePageGuest> {
 
     // Filtrimi i veturave
     final filteredCars = carProvider.cars.where((car) {
-      // Kontrollo vetëm filtrat që janë zgjedhur
       if (_selectedBodyTypes.isNotEmpty && !_selectedBodyTypes.contains(car.bodyType)) {
-        return false; // Nëse bodyType nuk përputhet, kalo tutje
+        return false;
       }
       if (_selectedFuelTypes.isNotEmpty && !_selectedFuelTypes.contains(car.fuelType)) {
-        return false; // Nëse fuelType nuk përputhet, kalo tutje
+        return false;
       }
       if (_selectedTransmissions.isNotEmpty && !_selectedTransmissions.contains(car.transmission)) {
-        return false; // Nëse transmission nuk përputhet, kalo tutje
+        return false;
       }
       if (_selectedUpholsteries.isNotEmpty && !_selectedUpholsteries.contains(car.upholstery)) {
-        return false; // Nëse upholstery nuk përputhet, kalo tutje
+        return false;
       }
       if (_selectedEquipment.isNotEmpty) {
-        // Kontrollo nëse të gjitha pajisjet e zgjedhura janë në pajisjet e veturës
+        // Kontrollo nese te gjitha pajisjet e zgjedhura jane ne pajisjet e vetures
         final hasAllSelectedEquipment = _selectedEquipment.every((equipment) => car.equipment.contains(equipment));
         if (!hasAllSelectedEquipment) {
-          return false; // Nëse pajisjet nuk përputhen, kalo tutje
+          return false; // Nese pajisjet nuk perputhen, kalo tutje
         }
       }
-      return true; // Nëse të gjitha kushtet përputhen, shto veturën në rezultat
+      return true; // Nese te gjitha kushtet perputhen, shto veturen ne rezultat
     }).toList();
 
 
-    final int filteredCarCount = filteredCars.length; // Numri i veturave të filtruara
+    final int filteredCarCount = filteredCars.length; // Numri i veturave te filtruara
 
 
     return Scaffold(
@@ -146,7 +145,7 @@ class _ChoosePageGuestState extends State<ChoosePageGuest> {
               _selectedEquipment,
             ),
             const SizedBox(height: 50),
-            // Buttonat Skip dhe Search
+            // Butonat Skip dhe Search
             Padding(
               padding: const EdgeInsets.only(right: 10,left: 10),
               child: Column(
@@ -181,7 +180,7 @@ class _ChoosePageGuestState extends State<ChoosePageGuest> {
                       ),
                       child: Center(
                         child: Text(
-                          '${AppLocalizations.of(context)!.search} ($filteredCarCount)', // Përfshin numrin e veturave
+                          '${AppLocalizations.of(context)!.search} ($filteredCarCount)', // Perfshin numrin e veturave
                           style: const TextStyle(
                             fontFamily: 'Kanit',
                             fontSize: 18,
@@ -296,7 +295,7 @@ class _ChoosePageGuestState extends State<ChoosePageGuest> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10), // Hapësira mes elementeve
+                    const SizedBox(width: 10),
                   ],
                 );
               }).toList(),

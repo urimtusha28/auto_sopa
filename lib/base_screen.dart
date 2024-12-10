@@ -10,7 +10,7 @@ import '../util/add_car.dart';
 
 class BaseScreen extends StatefulWidget {
   final bool isGuest;
-  final List<Car>? filteredCars; // Lista e veturave të filtruara
+  final List<Car>? filteredCars; // Lista e veturave te filtruara
 
   BaseScreen({super.key, required this.isGuest, this.filteredCars});
 
@@ -29,53 +29,53 @@ class _BaseScreenState extends State<BaseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Lista e faqeve të pronarit
+    // Lista e faqeve te owner
     final List<Widget> pagesOwner = [
       HomePageOwner(),
       EditOwner(),
       SettingsOwner(),
     ];
 
-    // Lista e faqeve për mysafirë me filtrim
+    // Lista e faqeve per guest
     final List<Widget> pagesGuest = [
       HomePageGuest(
-        // Përdor veturat e filtruara, ose të gjitha veturat kur `filteredCars` është null/bosh
+        // Perdor veturat e filtruara, ose te gjitha veturat kur `filteredCars` eshte null
         filteredCars: widget.filteredCars ?? [],
       ),
       SavePageGuest(),
       SettingsGuest(),
     ];
 
-    // Zgjidh faqet bazuar në rolin
+    // Zgjidh faqet bazuar ne rolin
     final List<Widget> selectedPage = widget.isGuest ? pagesGuest : pagesOwner;
 
-    // Ikonat për mysafirë
+    // Ikonat per guest
     final List<Map<String, String>> iconsGuest = [
       {'icon': 'assets/images/home_icon.svg', 'label': ''},
       {'icon': 'assets/images/save_icon.svg', 'label': ''},
       {'icon': 'assets/images/settings_icon.svg', 'label': ''},
     ];
 
-    // Ikonat për pronar
+    // Ikonat per owner
     final List<Map<String, String>> iconsOwner = [
       {'icon': 'assets/images/home_icon.svg', 'label': ''},
       {'icon': 'assets/images/edit_icon.svg', 'label': ''},
       {'icon': 'assets/images/settings_icon.svg', 'label': ''},
     ];
 
-    // Zgjidh ikonat bazuar në rolin
+    // Zgjidh ikonat bazuar ne rolin
     final icons = widget.isGuest ? iconsGuest : iconsOwner;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
       body: selectedPage[_selectedIndex], // Faqja aktuale
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0), // Margin nga fundi dhe anët
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
             color: const Color(0xFF2F89C0),
-            borderRadius: BorderRadius.circular(30), // Borderradius për kornizat
+            borderRadius: BorderRadius.circular(30),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -92,7 +92,7 @@ class _BaseScreenState extends State<BaseScreen> {
                   decoration: BoxDecoration(
                     color: _selectedIndex == index
                         ? Colors.white
-                        : const Color(0xFF2F89C0), // Ndryshon ngjyrën kur është i zgjedhur
+                        : const Color(0xFF2F89C0),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: SvgPicture.asset(

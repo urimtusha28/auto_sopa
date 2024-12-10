@@ -28,9 +28,9 @@ class _EditOwnerState extends State<EditOwner> {
       backgroundColor: Colors.transparent,
       builder: (_) => DraggableScrollableSheet(
         expand: false,
-        initialChildSize: 0.8, // Madhësia fillestare e modal-it
-        minChildSize: 0.5, // Madhësia minimale
-        maxChildSize: 0.9, // Madhësia maksimale
+        initialChildSize: 0.8,
+        minChildSize: 0.5,
+        maxChildSize: 0.9,
         builder: (BuildContext context, ScrollController scrollController) {
           return SingleChildScrollView(
             controller: scrollController,
@@ -182,7 +182,7 @@ class _EditOwnerState extends State<EditOwner> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset(
-                'assets/lottie/Animation_2.json', // Rruga e skedarit Lottie
+                'assets/lottie/Animation_2.json',
                 width: 250,
                 height: 250,
                 fit: BoxFit.contain,

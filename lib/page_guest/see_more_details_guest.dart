@@ -365,7 +365,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
           // Arrow Back Button
           GestureDetector(
             onTap: () {
-              Navigator.pop(context); // Veprimi për kthim prapa
+              Navigator.pop(context);
             },
             child: Container(
               width: 50,
@@ -376,7 +376,7 @@ class _SeeMoreDetailsGuestState extends State<SeeMoreDetailsGuest> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: SvgPicture.asset('assets/images/arrow_back.svg'), // Ikona për kthim prapa
+                child: SvgPicture.asset('assets/images/arrow_back.svg'),
               ),
             ),
           ),

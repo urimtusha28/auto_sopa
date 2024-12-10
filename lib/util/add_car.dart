@@ -61,10 +61,10 @@ class Car {
     return Car(
       make: make ?? this.make,
       model: model ?? this.model,
-      bodyType: bodyType ?? this.bodyType,
+      bodyType: bodyType,
       fuelType: fuelType ?? this.fuelType,
       registration: registration ?? this.registration,
-      milage: milage ?? this.milage,
+      milage: milage,
       transmission: transmission ?? this.transmission,
       location: location ?? this.location,
       price: price ?? this.price,

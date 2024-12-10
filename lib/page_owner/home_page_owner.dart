@@ -99,10 +99,10 @@ class _HomePageOwnerState extends State<HomePageOwner> {
         children: [
           // Image and icon
           Padding(
-            padding: const EdgeInsets.all(7), // Padding nga të gjitha anët
+            padding: const EdgeInsets.all(7),
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), // Radius për imazhin
+                borderRadius: BorderRadius.circular(10),
                 color: const Color(0xFFF5F5F5),
               ),
               child: ClipRRect(
@@ -110,7 +110,7 @@ class _HomePageOwnerState extends State<HomePageOwner> {
                 child: car.images.isNotEmpty
                     ? Image.file(
                   car.images.first,
-                  fit: BoxFit.contain, // Ruaj përmasat e imazhit
+                  fit: BoxFit.contain,
                 )
                     : Image.asset(
                   'assets/images/image_car_3.png',

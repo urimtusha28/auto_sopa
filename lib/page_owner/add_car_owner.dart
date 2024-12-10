@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import '../util/add_car.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+
+
 class AddCarOwner extends StatefulWidget {
   const AddCarOwner({Key? key}) : super(key: key);
 
@@ -24,9 +26,9 @@ class _AddCarOwnerState extends State<AddCarOwner> {
   final TextEditingController powerController = TextEditingController();
   final TextEditingController milageController = TextEditingController();
   final TextEditingController consumerController = TextEditingController();
-  final TextEditingController vehicleDescriptionController =
-      TextEditingController();
-
+  final TextEditingController vehicleDescriptionController = TextEditingController();
+  String? selectedModel;
+  String? selectedMake;
   final List<String> selectedEquipment = [];
   final List<String> selectedBodyColors = [];
   final List<String> selectedInteriorColors = [];

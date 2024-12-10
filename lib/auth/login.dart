@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // Email dhe Password të autorizuara
+  // Email dhe Password te autorizuara
   final String validEmail = 'urimtusha@gmail.com';
   final String validPassword = 'Urimtusha12';
 
@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
     final password = passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      // Kontrollo nëse fushat janë bosh
+      // Kontrollo nese fushat jane bosh
       ScaffoldMessenger.of(context).showSnackBar(
          SnackBar(
           content: Text(AppLocalizations.of(context)!.pleaseFillAllFields),
@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
         ),
       );
     } else if (email == validEmail && password == validPassword) {
-      // Nëse kredencialet janë të sakta, shko te BaseScreen
+      // Nese kredencialet jane te sakta, shko te BaseScreen
       Navigator.push(
         context,
         PageRouteBuilder(
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
         ),
       );
     } else {
-      // Nëse kredencialet janë të pasakta
+      // Nese kredencialet jane te pasakta
       ScaffoldMessenger.of(context).showSnackBar(
          SnackBar(
           content: Text(AppLocalizations.of(context)!.passwordEmailIncorrect),
@@ -147,7 +147,7 @@ class _LoginState extends State<Login> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context); // Veprimi për kthim prapa
+                        Navigator.pop(context);
                       },
                       child: Container(
                         width: 50,

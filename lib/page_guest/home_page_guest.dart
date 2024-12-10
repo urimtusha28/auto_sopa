@@ -19,7 +19,7 @@ class HomePageGuest extends StatefulWidget {
 class _HomePageGuestState extends State<HomePageGuest> {
   @override
   Widget build(BuildContext context) {
-    final cars = widget.filteredCars; // Përdor veturat e filtruara
+    final cars = widget.filteredCars; // Perdor veturat e filtruara
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
