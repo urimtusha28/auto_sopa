@@ -1,16 +1,12 @@
-# auto_sopa
+Key Features 
+Vehicle Management: Add, update, and delete vehicles.
+Advanced Filtering: Find vehicles based on categories like SUV, Diesel, Gasoline, etc.
+Persistent Storage: Data is saved using Hive and remains intact even after the app is closed.
+Responsive Design: Optimized for mobile devices.
+Multi-Language Support: The app is localized for Albanian, English, and German.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Technologies Used 🛠️
+Flutter: The main framework for building the application.
+Hive: Efficient local data storage. (Coming soon)
+Riverpod: State management solution.
+Firebase: For authentication and cloud storage. (Coming soon)
